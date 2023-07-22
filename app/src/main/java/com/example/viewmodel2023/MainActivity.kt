@@ -8,6 +8,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.viewmodel2023.ui.theme.ViewModel2023Theme
 
@@ -18,7 +20,15 @@ class MainActivity : ComponentActivity() {
         setContent {
 
             ViewModel2023Theme {
-                val viewModel : BaseViewModel = viewModel()
+                val viewModel: BaseViewModel =
+                    viewModel(factory = object : ViewModelProvider.Factory {
+                        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                            return BaseViewModel(
+                                name = "BaseViewModel"
+                            ) as T
+                        }
+                    }
+                    )
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),

@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 
-class BaseViewModel : ViewModel()  {
+class BaseViewModel(name : String) : ViewModel()  {
 
     var backgroundColor by mutableStateOf(Color.White)
         private set
